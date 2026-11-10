@@ -1,0 +1,167 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    // --- 7. ФУНКЦИИ (МЕТОДЫ) ---
+
+    // Функция без возвращаемого значения. Аргумент передается по значению (ссылка на строку копируется).
+    static void GreetUser(string name)
+    {
+        Console.WriteLine($"[Функция] Привет, {name}!");
+    }
+
+    // Функция с возвращаемым значением.
+    static int CalculateSum(int a, int b)
+    {
+        return a + b;
+    }
+
+    // Функция, демонстрирующая передачу по ссылке с помощью ключевого слова ref.
+    static void IncrementValue(ref int value)
+    {
+        value += 1;
+    }
+
+    static void Main()
+    {
+        // Устанавливаем кодировку консоли для поддержки кириллицы
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.InputEncoding = System.Text.Encoding.UTF8;
+
+        // --- 1. ВВОД И ВЫВОД ДАННЫХ ---
+        Console.WriteLine("=== 1. Ввод и вывод данных ===");
+        Console.Write("Введите ваше имя: ");
+        string userName = Console.ReadLine(); // Считывает всю строку, введенную пользователем
+        Console.WriteLine($"Привет, {userName}! Добро пожаловать.\n");
+
+        // --- 2. ОБЪЯВЛЕНИЕ ПЕРЕМЕННЫХ И ТИПЫ ДАННЫХ ---
+        Console.WriteLine("=== 2. Объявление переменных ===");
+        int integerVar = -42;               // 32-битное целое число
+        double doubleVar = 3.14159;         // Число с плавающей точкой (64 бит)
+        char charVar = 'A';                 // Символ Unicode (2 байта)
+        bool boolVar = true;                // Логический тип
+        string stringVar = "Текст";         // Ссылочный строковый тип
+
+        // Константа
+        const double PI = 3.1415926535;
+
+        Console.WriteLine($"Целое: {integerVar}, Дробное: {doubleVar}, Символ: {charVar}, Булево: {boolVar}\n");
+
+        // --- 3. МАТЕМАТИЧЕСКИЕ ОПЕРАЦИИ ---
+        Console.WriteLine("=== 3. Математические операции ===");
+        int a = 10;
+        int b = 3;
+
+        int sum = a + b;
+        int diff = a - b;
+        int prod = a * b;
+        int quotient = a / b;    // Целочисленное деление (3)
+        int remainder = a % b;   // Остаток от деления (1)
+
+        // Явное приведение типов (Type Casting)
+        double exactDivision = (double)a / b;
+
+        // Инкремент и декремент
+        int c = 5;
+        c++;
+
+        Console.WriteLine($"Деление int: {quotient}, Остаток: {remainder}, Точное деление: {exactDivision}\n");
+
+        // --- 4. УСЛОВИЯ И ЛОГИЧЕСКИЕ ОПЕРАЦИИ ---
+        Console.WriteLine("=== 4. Условия и логические операции ===");
+        int age = 20;
+        bool hasId = true;
+
+        if (age >= 18 && hasId)
+        {
+            Console.WriteLine("Доступ разрешен: вы совершеннолетний с ID.");
+        }
+        else if (age < 18 || !hasId)
+        {
+            Console.WriteLine("Доступ воспрещен.");
+        }
+        else
+        {
+            Console.WriteLine("Нетипичный случай.");
+        }
+
+        // Тернарный оператор
+        string status = (age >= 18) ? "Взрослый" : "Ребенок";
+
+        // Конструкция switch
+        char grade = 'B';
+        switch (grade)
+        {
+            case 'A': Console.WriteLine("Отлично"); break;
+            case 'B': Console.WriteLine("Хорошо"); break;
+            default: Console.WriteLine("Удовлетворительно"); break;
+        }
+        Console.WriteLine();
+
+        // --- 5. ЦИКЛЫ ---
+        Console.WriteLine("=== 5. Циклы ===");
+
+        Console.Write("Цикл for: ");
+        for (int i = 0; i < 5; i++)
+        {
+            if (i == 2) continue;
+            Console.Write(i + " ");
+        }
+        Console.WriteLine();
+
+        Console.Write("Цикл while: ");
+        int wCount = 0;
+        while (wCount < 3)
+        {
+            Console.Write(wCount + " ");
+            wCount++;
+        }
+        Console.WriteLine();
+
+        Console.Write("Цикл do-while: ");
+        int dwCount = 5;
+        do
+        {
+            Console.Write(dwCount + " ");
+            dwCount++;
+        } while (dwCount < 3);
+        Console.WriteLine("\n");
+
+        // --- 6. СТРУКТУРЫ ДАННЫХ ---
+        Console.WriteLine("=== 6. Структуры данных ===");
+
+        // Динамический список (List<T>)
+        List<int> numbers = new List<int> { 10, 20, 30, 40 };
+        numbers.Add(50); // Добавление элемента
+
+        Console.WriteLine($"Второй элемент списка: {numbers[1]}");
+        Console.WriteLine($"Размер списка: {numbers.Count}");
+
+        // Словарь (Dictionary<TKey, TValue>)
+        Dictionary<string, int> phoneBook = new Dictionary<string, int>();
+        phoneBook["Alex"] = 12345;
+        phoneBook["John"] = 67890;
+
+        Console.WriteLine($"Номер Алекса: {phoneBook["Alex"]}");
+
+        // Обход списка через foreach
+        Console.Write("Элементы списка: ");
+        foreach (int num in numbers)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine("\n\n");
+
+        // --- ИСПОЛНЕНИЕ ФУНКЦИЙ ---
+        Console.WriteLine("=== Вызовы функций ===");
+        GreetUser(userName);
+
+        int sumResult = CalculateSum(15, 25);
+        Console.WriteLine($"Результат CalculateSum: {sumResult}");
+
+        int activeValue = 10;
+        IncrementValue(ref activeValue); // Передача по ссылке с помощью ref
+        Console.WriteLine($"Переменная после IncrementValue: {activeValue}");
+    }
+}
